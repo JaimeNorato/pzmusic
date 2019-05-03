@@ -3,6 +3,8 @@
     img(src='./assets/logo.png')
     h1 pzmusic
     ul
+      artist(v-for="artist in artists"
+      v-bind:"artist")
       li(v-for="artist in artists") {{artist.name}}
 
 </template>
