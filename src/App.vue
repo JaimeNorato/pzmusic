@@ -3,21 +3,22 @@
     img(src='./assets/logo.png')
     h1 pzmusic
     ul
-      artist(v-for="artist in artists"
-      v-bind:"artist")
-      li(v-for="artist in artists") {{artist.name}}
+      Artist(v-for="artist in artists" v-bind:artist="artist" v-bind:key="artist.mbid")
 
 </template>
 
 <script>
+import Artist from './components/Artist.vue'
 import getArtists from './api'
 export default {
   name: 'app',
   data () {
     return {
       artists: [],
-
     }
+  },
+  components:{
+    Artist
   },
   mounted:function(){
     const self = this
