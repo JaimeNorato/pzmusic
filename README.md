@@ -1,6 +1,7 @@
 # pzmusic
 
 > proyecto tutorial de introduccion a vue.js en platzi
+>Es una aplicacion de vue, donde se desarrolla con la guia de tutriales en platzi, un reproductor de musica
 
 ## Build Setup
 
