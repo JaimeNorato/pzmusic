@@ -2,6 +2,8 @@
   #app
     img(src='./assets/logo.png')
     h1 pzmusic
+    select(v-model="selectedCountry")
+      option(v-for="country in countries" v-bind:value="country.value") {{country.name}}
     ul
       Artist(v-for="artist in artists" v-bind:artist="artist" v-bind:key="artist.mbid")
 
@@ -15,17 +17,33 @@ export default {
   data () {
     return {
       artists: [],
+      countries:[
+        {name:'Argentina',value:'argentina'},
+        {name:'Colombia',value:'colombia'},
+        {name:'España',value:'spain'},
+      ],
+      selectedCountry:'argentina',
     }
   },
   components:{
     Artist
   },
+  methods:{
+    refreshArtists(){
+      const self = this
+      getArtists(this.selectedCountry)
+        .then(function(artists){
+          self.artists=artists
+        })
+    }
+  },
   mounted:function(){
-    const self = this
-    getArtists()
-      .then(function(artists){
-        self.artists=artists
-      })
+    this.refreshArtists()
+  },
+  watch:{
+    selectedCountry(){
+      this.refreshArtists();
+    }
   }
 }
 </script>
